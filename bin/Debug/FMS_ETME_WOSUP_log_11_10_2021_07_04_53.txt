@@ -1,0 +1,13 @@
+---11/10/2021 7:04:53 PM start programe 
+---11/10/2021 7:04:53 PM Establish SFTP Connection 
+---11/10/2021 7:04:53 PM Remvove SFTP host target path old files 
+---11/10/2021 7:04:54 PM fetched woupd from oracle database 
+---11/10/2021 7:04:54 PM 2 
+---11/10/2021 7:04:54 PM formated woupd and saved to local D:\export\htdocs\gsd\FMS_GSD_WOUPD_ETIME_20211110.txt 
+---11/10/2021 7:04:54 PM fetched wosup from oracle database 
+---11/10/2021 7:04:54 PM fetched wosup dataset is empty, skip... 
+---11/10/2021 7:04:54 PM Saved generated Etime file to local 
+---11/10/2021 7:04:54 PM Uploaded D:\export\htdocs\gsd\FMS_GSD_WOUPD_ETIME_20211110.txt to SFTP host as inbound/FMS_GSD_WOUPD_ETIME_20211110.txt 
+---11/10/2021 7:04:54 PM Removed local file D:\export\htdocs\gsd\FMS_GSD_WOUPD_ETIME_20211110.txt 
+---11/10/2021 7:04:54 PM Disconnected SFTP connection 
+---11/10/2021 7:04:55 PM Send email to target clients 

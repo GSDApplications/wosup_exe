@@ -1,0 +1,11 @@
+D:\export\htdocs\FMSWosup\bin\Debug\FMSWosup.exe.config
+D:\export\htdocs\FMSWosup\bin\Debug\FMSWosup.exe
+D:\export\htdocs\FMSWosup\bin\Debug\FMSWosup.pdb
+D:\export\htdocs\FMSWosup\obj\Debug\FMSWosup.csprojAssemblyReference.cache
+D:\export\htdocs\FMSWosup\obj\Debug\FMSWosup.csproj.CoreCompileInputs.cache
+D:\export\htdocs\FMSWosup\obj\Debug\FMSWosup.exe
+D:\export\htdocs\FMSWosup\obj\Debug\FMSWosup.pdb
+D:\export\htdocs\FMSWosup\bin\Debug\Renci.SshNet.dll
+D:\export\htdocs\FMSWosup\bin\Debug\Renci.SshNet.xml
+D:\export\htdocs\FMSWosup\obj\Debug\FMSWosup.csproj.CopyComplete
+D:\export\htdocs\FMSWosup\bin\Debug\Oracle.DataAccess.dll
