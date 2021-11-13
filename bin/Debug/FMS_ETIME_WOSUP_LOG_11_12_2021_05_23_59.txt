@@ -1,0 +1,4 @@
+---11/12/2021 5:23:59 PM start program 
+---11/12/2021 5:23:59 PM This execution is for testing, running reset database 
+---11/12/2021 5:24:00 PM Cannot complete works: error throwed: 
+---11/12/2021 5:24:00 PM Connection must be open for this operation 

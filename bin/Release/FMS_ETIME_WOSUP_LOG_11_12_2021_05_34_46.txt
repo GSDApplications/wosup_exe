@@ -1,0 +1,12 @@
+---11/12/2021 5:34:46 PM start program 
+---11/12/2021 5:34:46 PM This execution is for testing, running reset database 
+---11/12/2021 5:34:46 PM Establishing SFTP Connection 
+---11/12/2021 5:34:47 PM Generating Etime files 
+---11/12/2021 5:34:47 PM fetching woupd from oracle database 
+---11/12/2021 5:34:47 PM formating woupd and saving to local D:\\export\\ftpdocs\\FMS_GSD_WOUPD_ETIME_20211112.txt 
+---11/12/2021 5:34:47 PM fetching wosup from oracle database 
+---11/12/2021 5:34:47 PM fetched wosup dataset is empty, skip... 
+---11/12/2021 5:34:47 PM Uploading D:\\export\\ftpdocs\\FMS_GSD_WOUPD_ETIME_20211112.txt to SFTP host as inbound/FMS_GSD_WOUPD_ETIME_20211112.txt 
+---11/12/2021 5:34:47 PM Disconnecting SFTP connection 
+---11/12/2021 5:34:47 PM Sending email to target clients 
+---11/12/2021 5:34:48 PM updating database WO REC_MODF 

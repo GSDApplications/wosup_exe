@@ -2,6 +2,7 @@ using Renci.SshNet;
 using Renci.SshNet.Sftp;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.IO;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace FMSWosup
 	{
 		private static int workCount { get; set; }
 		private static SftpClient client { get; set; }
+		private static Config config = new Config();
 
 		static void Main(string[] args)
 		{
@@ -24,6 +26,13 @@ namespace FMSWosup
 
 			try
 			{
+				if (Config.isTesting)
+				{
+					Logger.addLog("This execution is for testing, running reset database");
+					Util.updateDataResetWorkOrder();
+				}
+				
+
 				sendSFTP();
 
 				if (workCount > 0)
@@ -31,6 +40,10 @@ namespace FMSWosup
 					sendSMTP();
 				}
 
+				Logger.addLog("updating database WO REC_MODF");
+				Util.updateDataWOUpdate();
+
+				Logger.commit();
 			}
 			catch (Exception e)
 			{
@@ -38,27 +51,24 @@ namespace FMSWosup
 				Logger.addLog(e.Message);
 				Logger.commit();
 			}
-
-
-}
+		}
 
 		private static void sendSFTP()
 		{
-			client = new SftpClient("10.32.195.163", 22, "gsdetimt", "gsdetimt1");
+
+			Logger.addLog("Establishing SFTP Connection");
+			client = new SftpClient(Config.sftpHost, Config.sftpPort, Config.sftpUsername, Config.sftpPassword);
 			client.Connect();
 
-			Logger.addLog("Establish SFTP Connection");
-
-			removeOldFiles();
-			Logger.addLog("Remvove SFTP host target path old files");
+			Logger.addLog("Generating Etime files");
 			generateEtimeOutputFile();
-			Logger.addLog("Saved generated Etime file to local");
 
-			uploadFileAndRemoveLocal(Config.localWoupdFilePath, Config.outputWoupdFilePath);
-			uploadFileAndRemoveLocal(Config.localWosupFilePath, Config.outputWosupFilePath);
+			uploadFileToSFTP(Config.localWoupdFilePath, Config.outputWoupdFilePath);
+			uploadFileToSFTP(Config.localWosupFilePath, Config.outputWosupFilePath);
 
+			Logger.addLog("Disconnecting SFTP connection");
 			client.Disconnect();
-			Logger.addLog("Disconnected SFTP connection");
+			
 		}
 
 		private static void sendSMTP()
@@ -77,43 +87,48 @@ namespace FMSWosup
 			}
 			SmtpClient smtpClient = new SmtpClient(Config.smtpServer);
 
+			Logger.addLog("Sending email to target clients");
 			smtpClient.Send(message);
-			Logger.addLog("Send email to target clients");
+			
 		}
 
-		private static void removeOldFiles()
+		private static void removeFileWithSameName(string name)
 		{
 			foreach (SftpFile file in client.ListDirectory(Config.sftpTargetPath))
 			{
-				if ((file.Name != ".") && (file.Name != ".."))
+				if (file.Name==name)
 				{
-					client.DeleteFile(file.FullName);					
+					Logger.addLog("Removing", name, "in server");
+					client.DeleteFile(file.FullName);
 				}
 			}
 		}
 
-		private static void uploadFileAndRemoveLocal(string localPath, string targetPath)
+		private static void uploadFileToSFTP(string localPath, string targetPath)
 		{
 			if (!File.Exists(localPath))
 			{
 				return;
 			}
 
+			removeFileWithSameName(targetPath);
+
+			Logger.addLog("Uploading", localPath, "to SFTP host as", targetPath);
 			using (FileStream fs = File.OpenRead(localPath))
 			{
 				client.UploadFile(fs, targetPath, null);
 			}
-			Logger.addLog("Uploaded", localPath, "to SFTP host as", targetPath);
-			File.Delete(localPath);
-			Logger.addLog("Removed local file", localPath);
+			
+			
 		}
 
 		private static void generateEtimeOutputFile()
 		{
 			//WOUPD
-			
+
+			Logger.addLog("fetching woupd from oracle database");
 			DataSet dsWoupd = Util.getEtimeUpdate();
-			Logger.addLog("fetched woupd from oracle database");
+			
 			if (Util.IsEmpty(dsWoupd))
 			{
 				workCount -= 1;
@@ -123,30 +138,30 @@ namespace FMSWosup
 			{
 				using (StreamWriter swWoupd = new StreamWriter(Config.localWoupdFilePath))
 				{
+					Logger.addLog("formating woupd and saving to local", Config.localWoupdFilePath);
 					Util.generateTextByDataset(dsWoupd, swWoupd);
 					swWoupd.WriteLine(Util.generateTextLineByByteLength(Config.outputWoupdFooter, Config.outputFooterByteLength));
-					Logger.addLog("formated woupd and saved to local", Config.localWoupdFilePath);
 				}
 			}
 
 
 
 			//WOSUP
-			
+			Logger.addLog("fetching wosup from oracle database");
 			DataSet dsWosup = Util.getEtimeWosup();
-			Logger.addLog("fetched wosup from oracle database");
+			
 			if (Util.IsEmpty(dsWosup))
 			{
-				workCount -= 1;
 				Logger.addLog("fetched wosup dataset is empty, skip...");
+				workCount -= 1;
 			}
 			else
 			{
 				using (StreamWriter swWosup = new StreamWriter(Config.localWosupFilePath))
 				{
+					Logger.addLog("formated wosup and saving to local", Config.localWosupFilePath);
 					Util.generateTextByDataset(dsWosup, swWosup, Config.etimePrefixLine);
 					swWosup.WriteLine(Util.generateTextLineByByteLength(Config.outputWoupdFooter, Config.outputFooterByteLength));
-					Logger.addLog("formated wosup and saved to local", Config.localWosupFilePath);
 				}
 			}
 				

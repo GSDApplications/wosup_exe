@@ -9,3 +9,11 @@ D:\export\htdocs\FMSWosup\bin\Debug\Renci.SshNet.dll
 D:\export\htdocs\FMSWosup\bin\Debug\Renci.SshNet.xml
 D:\export\htdocs\FMSWosup\obj\Debug\FMSWosup.csproj.CopyComplete
 D:\export\htdocs\FMSWosup\bin\Debug\Oracle.DataAccess.dll
+D:\export\htdocs\FMSWosup\bin\Debug\System.Configuration.ConfigurationManager.dll
+D:\export\htdocs\FMSWosup\bin\Debug\System.Security.AccessControl.dll
+D:\export\htdocs\FMSWosup\bin\Debug\System.Security.Permissions.dll
+D:\export\htdocs\FMSWosup\bin\Debug\System.Security.Principal.Windows.dll
+D:\export\htdocs\FMSWosup\bin\Debug\System.Configuration.ConfigurationManager.xml
+D:\export\htdocs\FMSWosup\bin\Debug\System.Security.AccessControl.xml
+D:\export\htdocs\FMSWosup\bin\Debug\System.Security.Permissions.xml
+D:\export\htdocs\FMSWosup\bin\Debug\System.Security.Principal.Windows.xml

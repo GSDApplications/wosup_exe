@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FMSWosup
 {
-	class Config
+	public class Config
 	{
 		public class OutputItem
 		{
@@ -18,28 +19,25 @@ namespace FMSWosup
 				this.byteLength = byteLength;
 			}
 		}
+
+		public static bool isTesting = bool.Parse(ConfigurationManager.AppSettings["isTesting"]);
+
 		// SFTP config
-		public static string sftpHost = "10.32.195.163";
-		public static int sftpPort = 22;
-		public static string sftpUsername = "gsdetimt";
-		public static string sftpPassword = "gsdetimt1";
-		public static string sftpTargetPath = "inbound";
-		public static string sftpTargetFileName = string.Format("/{0}/FMS_GSD_WOSUP_ETIME_{1}.txt", sftpTargetPath, DateTime.Now.ToString("yyyyMMdd"));
+		public static string sftpHost = ConfigurationManager.AppSettings[isTesting? "sftpHostTest" : "sftpHost"];
+		public static int sftpPort = int.Parse(ConfigurationManager.AppSettings["sftpPort"]);
+		public static string sftpUsername = ConfigurationManager.AppSettings[isTesting? "sftpUsernameTest" : "sftpUsername"];
+		public static string sftpPassword = ConfigurationManager.AppSettings[isTesting? "sftpPasswordTest" : "sftpPassword"];
+		public static string sftpTargetPath = ConfigurationManager.AppSettings["sftpTargetPath"];
 
 		// SMTP config
-		public static string smtpServer = "smtp-relay.gmail.com";
-		public static string smtpFrom = "etimeNotification@lacity.org";
+		public static string smtpServer = ConfigurationManager.AppSettings["smtpServer"];
+		public static string smtpFrom = ConfigurationManager.AppSettings["smtpFrom"];
 		public static string smtpSubject = "FMS Scheduled Job Executed";
-		public static List<string> recipientEmailList = new List<string>()
-		{
-			"shaw.yu@lacity.org",
-			"charles.x.huang@lacity.org",
-		};
+		public static List<string> recipientEmailList = ConfigurationManager.AppSettings["smtpRecipientEmailList"].ToString().Split(',').ToList<string>().ConvertAll<string>(email=>email.Trim());
 
 		public static string getSMTPBody(int workCount)
 		{
-			string smtpServerDns = "cwafms2ftp29.ci.la.ca.us";
-			string smtpServerHtmlLink = string.Format("<a href={0}>{1}</a>", smtpServerDns, smtpServerDns);
+			string smtpServerHtmlLink = string.Format("<a href={0}>{1}</a>", smtpServer, smtpServer);
 			string smtpBodyFooterHtml = string.Format("<p>Notice from Scheduled Job at {0}</p>", DateTime.Now.ToString("dd-MMM-yy, hh:mm tt"));
 			string smtpBodyContentHtml = string.Format("<p>{0} Updated Work Orders sent to FMS server {1}</p>", workCount, smtpServerHtmlLink);
 			return smtpBodyContentHtml+smtpBodyFooterHtml;
@@ -76,10 +74,10 @@ namespace FMSWosup
 			new OutputItem("RPT_6", 30),
 		};
 
-		private static string localFilePath = "D:\\export\\htdocs\\gsd\\";
+		private static string localFilePath = ConfigurationManager.AppSettings["localFilePath"].ToString();
 
-		private static string woupdTitle = "FMS_GSD_WOUPD_ETIME";
-		private static string wosupTitle = "FMS_GSD_WOSUP_ETIME";
+		private static string woupdTitle = ConfigurationManager.AppSettings["woupdFileName"].ToString();
+		private static string wosupTitle = ConfigurationManager.AppSettings["wosupFileName"].ToString();
 
 		public static string outputWoupdFileName = string.Format("{1}_{0}.txt", DateTime.Now.ToString("yyyyMMdd"), woupdTitle);
 		public static string outputWosupFileName = string.Format("{1}_{0}.txt", DateTime.Now.ToString("yyyyMMdd"), wosupTitle);
@@ -96,8 +94,7 @@ namespace FMSWosup
 
 
 		//log path
-		public static string logPath = ".";
-		public static string logFileName = string.Format("FMS_ETME_WOSUP_log_{0}", DateTime.Now.ToString("MM_dd_yyyy_hh_mm_ss"));
-		public static string logFilePath = string.Format("{0}/{1}.txt", logPath, logFileName);
+		public static string logFileName = string.Format("{1}_{0}", DateTime.Now.ToString("MM_dd_yyyy_hh_mm_ss"), ConfigurationManager.AppSettings["localLogFileName"]);
+		public static string logFilePath = string.Format("{0}/{1}.txt", ConfigurationManager.AppSettings["localLogFilePath"], logFileName);
 	}
 }

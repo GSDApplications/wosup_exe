@@ -4,17 +4,38 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Configuration;
 using System.Collections.Specialized;
 using Oracle.DataAccess.Client;
 using Oracle.DataAccess.Types;
+using System.Configuration;
 using System.IO;
 
 namespace FMSWosup
 {
 	class Util
 	{
-		private static OracleConnection conn = new OracleConnection(ConfigurationSettings.AppSettings["dbConnection"]);
+		private static OracleConnection conn = new OracleConnection(ConfigurationManager.AppSettings["dbConnection"]);
+
+		public static void updateDataResetWorkOrder()
+		{
+			updateDataByProcedure("RESET_WORK_ORDER_UPLOAD_DATA");
+		}
+
+		public static void updateDataWOUpdate()
+		{
+			updateDataByProcedure("UPDATE_ETIME_WOUPD_UPLOAD");
+		}
+
+		private static void updateDataByProcedure(string procedure)
+		{
+			OracleCommand cmd = conn.CreateCommand();
+			cmd.Connection.Open();
+			cmd.CommandType = CommandType.StoredProcedure;
+			cmd.CommandText = string.Format("SSYU.FMS_WOSUP.{0}", procedure);
+			cmd.ExecuteNonQuery();
+			if (cmd.Connection.State != ConnectionState.Closed)
+				cmd.Connection.Close();
+		}
 
 		private static DataSet getDataByProcedure(string procedure)
 		{
@@ -83,7 +104,6 @@ namespace FMSWosup
 			foreach (DataTable table in dataSet.Tables)
 				if (table.Rows.Count != 0)
 				{
-					Logger.addLog(table.Rows.Count);
 					return false;
 				}
 
