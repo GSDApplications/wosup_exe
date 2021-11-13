@@ -44,14 +44,14 @@ namespace FMSWosup
 				Util.updateDataWOUpdate();
 				Logger.addLog("done");
 				Logger.commit();
-			}
+		}
 			catch (Exception e)
 			{
 				Logger.addLog("Cannot complete works: error throwed:");
 				Logger.addLog(e.Message);
 				Logger.commit();
 			}
-		}
+}
 
 		private static void sendSFTP()
 		{

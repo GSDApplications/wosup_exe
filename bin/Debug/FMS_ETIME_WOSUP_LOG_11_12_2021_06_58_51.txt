@@ -1,0 +1,4 @@
+---11/12/2021 6:58:51 PM start program 
+---11/12/2021 6:58:51 PM This execution is for testing, running reset database 
+---11/12/2021 6:58:52 PM Cannot complete works: error throwed: 
+---11/12/2021 6:58:52 PM Object reference not set to an instance of an object. 

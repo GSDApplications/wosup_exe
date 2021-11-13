@@ -1,0 +1,8 @@
+D:\export\htdocs\FMSWosup\DBAccess\bin\Debug\DBAccess.exe.config
+D:\export\htdocs\FMSWosup\DBAccess\bin\Debug\DBAccess.exe
+D:\export\htdocs\FMSWosup\DBAccess\bin\Debug\DBAccess.pdb
+D:\export\htdocs\FMSWosup\DBAccess\obj\Debug\DBAccess.csprojAssemblyReference.cache
+D:\export\htdocs\FMSWosup\DBAccess\obj\Debug\DBAccess.csproj.CoreCompileInputs.cache
+D:\export\htdocs\FMSWosup\DBAccess\obj\Debug\DBAccess.csproj.CopyComplete
+D:\export\htdocs\FMSWosup\DBAccess\obj\Debug\DBAccess.exe
+D:\export\htdocs\FMSWosup\DBAccess\obj\Debug\DBAccess.pdb

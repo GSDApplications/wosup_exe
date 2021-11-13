@@ -17,3 +17,6 @@ D:\export\htdocs\FMSWosup\bin\Debug\System.Configuration.ConfigurationManager.xm
 D:\export\htdocs\FMSWosup\bin\Debug\System.Security.AccessControl.xml
 D:\export\htdocs\FMSWosup\bin\Debug\System.Security.Permissions.xml
 D:\export\htdocs\FMSWosup\bin\Debug\System.Security.Principal.Windows.xml
+D:\export\htdocs\FMSWosup\bin\Debug\DBAccess.exe
+D:\export\htdocs\FMSWosup\bin\Debug\DBAccess.pdb
+D:\export\htdocs\FMSWosup\bin\Debug\DBAccess.exe.config

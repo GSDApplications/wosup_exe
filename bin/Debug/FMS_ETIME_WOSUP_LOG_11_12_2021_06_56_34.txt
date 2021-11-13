@@ -1,0 +1,4 @@
+---11/12/2021 6:56:34 PM start program 
+---11/12/2021 6:56:34 PM This execution is for testing, running reset database 
+---11/12/2021 6:56:34 PM Cannot complete works: error throwed: 
+---11/12/2021 6:56:34 PM The type initializer for 'FMSWosup.Util' threw an exception. 

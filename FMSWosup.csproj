@@ -75,5 +75,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="DBAccess\DBAccess.csproj">
+      <Project>{75cb0165-d0da-4b0e-a9f9-0e7d795da55a}</Project>
+      <Name>DBAccess</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

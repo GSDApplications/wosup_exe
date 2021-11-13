@@ -1,0 +1,8 @@
+D:\export\htdocs\FMSWosup\DBAccess\bin\Release\DBAccess.exe.config
+D:\export\htdocs\FMSWosup\DBAccess\bin\Release\DBAccess.exe
+D:\export\htdocs\FMSWosup\DBAccess\bin\Release\DBAccess.pdb
+D:\export\htdocs\FMSWosup\DBAccess\bin\Release\Oracle.DataAccess.dll
+D:\export\htdocs\FMSWosup\DBAccess\obj\Release\DBAccess.csproj.CoreCompileInputs.cache
+D:\export\htdocs\FMSWosup\DBAccess\obj\Release\DBAccess.csproj.CopyComplete
+D:\export\htdocs\FMSWosup\DBAccess\obj\Release\DBAccess.exe
+D:\export\htdocs\FMSWosup\DBAccess\obj\Release\DBAccess.pdb

@@ -9,12 +9,12 @@ using Oracle.DataAccess.Client;
 using Oracle.DataAccess.Types;
 using System.Configuration;
 using System.IO;
+using DataAccess;
 
 namespace FMSWosup
 {
 	class Util
 	{
-		private static OracleConnection conn = new OracleConnection(ConfigurationManager.AppSettings["dbConnection"]);
 
 		public static void updateDataResetWorkOrder()
 		{
@@ -28,6 +28,9 @@ namespace FMSWosup
 
 		private static void updateDataByProcedure(string procedure)
 		{
+			DAccess db = new DAccess();
+			OracleConnection conn = db.tmpGetOracleConnection();
+
 			OracleCommand cmd = conn.CreateCommand();
 			cmd.Connection.Open();
 			cmd.CommandType = CommandType.StoredProcedure;
@@ -39,6 +42,9 @@ namespace FMSWosup
 
 		private static DataSet getDataByProcedure(string procedure)
 		{
+			DAccess db = new DAccess();
+			OracleConnection conn = db.tmpGetOracleConnection();
+
 			OracleCommand cmd = conn.CreateCommand();
 			cmd.CommandType = CommandType.StoredProcedure;
 			cmd.CommandText = string.Format("SSYU.FMS_WOSUP.{0}", procedure);

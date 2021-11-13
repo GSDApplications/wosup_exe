@@ -16,3 +16,7 @@ D:\export\htdocs\FMSWosup\obj\Release\FMSWosup.csproj.CoreCompileInputs.cache
 D:\export\htdocs\FMSWosup\obj\Release\FMSWosup.csproj.CopyComplete
 D:\export\htdocs\FMSWosup\obj\Release\FMSWosup.exe
 D:\export\htdocs\FMSWosup\obj\Release\FMSWosup.pdb
+D:\export\htdocs\FMSWosup\bin\Release\DBAccess.exe
+D:\export\htdocs\FMSWosup\bin\Release\DBAccess.pdb
+D:\export\htdocs\FMSWosup\bin\Release\DBAccess.exe.config
+D:\export\htdocs\FMSWosup\obj\Release\FMSWosup.csprojAssemblyReference.cache
