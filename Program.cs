@@ -42,7 +42,7 @@ namespace FMSWosup
 
 				Logger.addLog("updating database WO REC_MODF");
 				Util.updateDataWOUpdate();
-
+				Logger.addLog("done");
 				Logger.commit();
 			}
 			catch (Exception e)
