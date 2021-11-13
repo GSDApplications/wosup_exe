@@ -21,6 +21,7 @@ namespace FMSWosup
 		}
 
 		public static bool isTesting = bool.Parse(ConfigurationManager.AppSettings["isTesting"]);
+		public static string dbUser = ConfigurationManager.AppSettings["dbUser"];
 
 		// SFTP config
 		public static string sftpHost = ConfigurationManager.AppSettings[isTesting? "sftpHostTest" : "sftpHost"];
@@ -35,11 +36,11 @@ namespace FMSWosup
 		public static string smtpSubject = "FMS Scheduled Job Executed";
 		public static List<string> recipientEmailList = ConfigurationManager.AppSettings["smtpRecipientEmailList"].ToString().Split(',').ToList<string>().ConvertAll<string>(email=>email.Trim());
 
-		public static string getSMTPBody(int workCount)
+		public static string getSMTPBody(string prefix)
 		{
 			string smtpServerHtmlLink = string.Format("<a href={0}>{1}</a>", sftpHost, sftpHost);
 			string smtpBodyFooterHtml = string.Format("<p>Notice from Scheduled Job at {0}</p>", DateTime.Now.ToString("dd-MMM-yy, hh:mm tt"));
-			string smtpBodyContentHtml = string.Format("<p>{0} Updated Work Orders sent to FMS server {1}</p>", workCount, smtpServerHtmlLink);
+			string smtpBodyContentHtml = string.Format("<p>{0} Work Orders sent to FMS server {1}</p>", prefix, smtpServerHtmlLink);
 			return smtpBodyContentHtml+smtpBodyFooterHtml;
 		}
 
@@ -91,10 +92,96 @@ namespace FMSWosup
 		public static string outputWoupdFooter = string.Format("TRL{0}", outputWoupdFileName);
 		public static string outputWosupFooter = string.Format("TRL{0}", outputWosupFileName);
 		public static int outputFooterByteLength = 32;
+		public static string getOutputFooter(string fileName, int workOrderCount, int headerCount=0)
+		{
+			return string.Format("TRL{0}{1}{2}", Util.generateTextLineByByteLength(fileName, 32), Util.generateTextLineByByteLength(workOrderCount.ToString(), 10), headerCount == 0 ? "" : Util.generateTextLineByByteLength(headerCount.ToString(), 10));
+		}
 
 
 		//log path
+		public static string localLogFilePath = ConfigurationManager.AppSettings["localLogFilePath"];
 		public static string logFileName = string.Format("{1}_{0}", DateTime.Now.ToString("MM_dd_yyyy_hh_mm_ss"), ConfigurationManager.AppSettings["localLogFileName"]);
-		public static string logFilePath = string.Format("{0}/{1}.txt", ConfigurationManager.AppSettings["localLogFilePath"], logFileName);
+		public static string logFileFullNamePath = string.Format("{0}/{1}.txt", localLogFilePath, logFileName);
+
+		
+
+		// get by type
+		public static string GetLocalFilePathByType(workType type)
+		{
+			switch (type)
+			{
+				case workType.update:
+					return localWoupdFilePath;
+				case workType.wosup:
+					return localWosupFilePath;
+				default:
+					return localWoupdFilePath;
+			}
+		}
+
+		public static string GetOutputFilePathByType(workType type)
+		{
+			switch (type)
+			{
+				case workType.update:
+					return outputWoupdFilePath;
+				case workType.wosup:
+					return outputWosupFilePath;
+				default:
+					return outputWoupdFilePath;
+			}
+		}
+
+		public static string GetOutputFileNameByType(workType type)
+		{
+			switch (type)
+			{
+				case workType.update:
+					return outputWoupdFileName;
+				case workType.wosup:
+					return outputWosupFileName;
+				default:
+					return outputWoupdFileName;
+			}
+		}
+
+		public static string GetGeneratedPrefixLineByType(workType type)
+		{
+			switch (type)
+			{
+				case workType.update:
+					return string.Empty;
+				case workType.wosup:
+					return etimePrefixLine;
+				default:
+					return string.Empty;
+			}
+		}
+
+		public static string GetOutputFooterByType(workType type, int count)
+		{
+			switch (type)
+			{
+				case workType.update:
+					return getOutputFooter(outputWoupdFileName, count + 1);
+				case workType.wosup:
+					return getOutputFooter(outputWosupFileName, count * 2 + 1, count);
+				default:
+					return string.Empty;
+			}
+		}
+
+		public static string GetOutputSMTPFooterPrefixByType(workType type, int count)
+		{
+			switch (type)
+			{
+				case workType.update:
+					return string.Format("{0} updated", count);
+				case workType.wosup:
+					return count.ToString();
+				default:
+					return string.Empty;
+			}
+		}
 	}
 }

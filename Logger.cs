@@ -22,7 +22,8 @@ namespace FMSWosup
 		}
 		public static void commit()
 		{
-			File.WriteAllText(Config.logFilePath, string.Join("\n", logs));
+			Directory.CreateDirectory(Config.localLogFilePath);
+			File.WriteAllText(Config.logFileFullNamePath, string.Join("\n", logs));
 		}
 	}
 }

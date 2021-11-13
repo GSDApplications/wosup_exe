@@ -100,11 +100,11 @@ namespace DataAccess
         }
 
 
-		public OracleConnection tmpGetFMSCROracleConnection()
+		public OracleConnection tmpGetTestOracleConnection()
 		{
-			if (GetConnStringAppSetting("fmscr_dbConnection") == null)
+			if (GetConnStringAppSetting("dbConnectionTest") == null)
 				throw new ApplicationException("Default database connection not defined");
-			string strConnString = GetConnStringAppSetting("fmscr_dbConnection");
+			string strConnString = GetConnStringAppSetting("dbConnectionTest");
 			if (strConnString.Length == 0)
 				throw new ApplicationException("Default database connection not defined");
 			return new OracleConnection(strConnString);

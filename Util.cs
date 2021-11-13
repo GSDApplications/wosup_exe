@@ -15,26 +15,28 @@ namespace FMSWosup
 {
 	class Util
 	{
-
-		public static void updateDataResetWorkOrder()
+		public static void updateDataByType(workType type)
 		{
-			updateDataByProcedure("RESET_WORK_ORDER_UPLOAD_DATA");
-		}
-
-		public static void updateDataWOUpdate()
-		{
-			updateDataByProcedure("UPDATE_ETIME_WOUPD_UPLOAD");
+			switch (type)
+			{
+				case workType.update:
+					updateDataByProcedure("UPDATE_ETIME_WOUPD_UPLOAD");
+					break;
+				case workType.wosup:
+					updateDataByProcedure("UPDATE_ETIME_WOSUP_UPLOAD");
+					break;
+			}
 		}
 
 		private static void updateDataByProcedure(string procedure)
 		{
 			DAccess db = new DAccess();
-			OracleConnection conn = db.tmpGetOracleConnection();
+			OracleConnection conn = Config.isTesting ? db.tmpGetTestOracleConnection(): db.tmpGetOracleConnection();
 
 			OracleCommand cmd = conn.CreateCommand();
 			cmd.Connection.Open();
 			cmd.CommandType = CommandType.StoredProcedure;
-			cmd.CommandText = string.Format("SSYU.FMS_WOSUP.{0}", procedure);
+			cmd.CommandText = string.Format("{1}.FMS_WOSUP.{0}", procedure, Config.dbUser);
 			cmd.ExecuteNonQuery();
 			if (cmd.Connection.State != ConnectionState.Closed)
 				cmd.Connection.Close();
@@ -43,11 +45,11 @@ namespace FMSWosup
 		private static DataSet getDataByProcedure(string procedure)
 		{
 			DAccess db = new DAccess();
-			OracleConnection conn = db.tmpGetOracleConnection();
+			OracleConnection conn = Config.isTesting ? db.tmpGetTestOracleConnection() : db.tmpGetOracleConnection();
 
 			OracleCommand cmd = conn.CreateCommand();
 			cmd.CommandType = CommandType.StoredProcedure;
-			cmd.CommandText = string.Format("SSYU.FMS_WOSUP.{0}", procedure);
+			cmd.CommandText = string.Format("{1}.FMS_WOSUP.{0}", procedure, Config.dbUser);
 
 			DataSet ds = new DataSet();
 			cmd.Parameters.Add(new OracleParameter("p_recordset", OracleDbType.RefCursor, ParameterDirection.Output));
@@ -61,14 +63,17 @@ namespace FMSWosup
 			return ds;
 		}
 
-		public static DataSet getEtimeUpdate()
+		public static DataSet getEtimeDataSetByType(workType type)
 		{
-			return getDataByProcedure("GET_ETIME_UPDATE");
-		}
-
-		public static DataSet getEtimeWosup()
-		{
-			return getDataByProcedure("GET_ETIME_WOSUP");
+			switch (type)
+			{
+				case workType.update:
+					return getDataByProcedure("GET_ETIME_UPDATE");
+				case workType.wosup:
+					return getDataByProcedure("GET_ETIME_WOSUP");
+				default:
+					return getDataByProcedure("GET_ETIME_UPDATE");
+			}
 		}
 
 		public static string generateTextLineByByteLength(string text, int byteLength)
@@ -105,15 +110,17 @@ namespace FMSWosup
 			}
 		}
 
-		public static bool IsEmpty(DataSet dataSet)
+		public static int getRowCountFromDataset(DataSet ds)
 		{
-			foreach (DataTable table in dataSet.Tables)
-				if (table.Rows.Count != 0)
+			int count = 0;
+			foreach(DataTable dt in ds.Tables)
+			{
+				foreach(DataRow dr in dt.Rows)
 				{
-					return false;
+					count += 1;
 				}
-
-			return true;
+			}
+			return count;
 		}
 	}
 }
