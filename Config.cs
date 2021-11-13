@@ -37,7 +37,7 @@ namespace FMSWosup
 
 		public static string getSMTPBody(int workCount)
 		{
-			string smtpServerHtmlLink = string.Format("<a href={0}>{1}</a>", smtpServer, smtpServer);
+			string smtpServerHtmlLink = string.Format("<a href={0}>{1}</a>", sftpHost, sftpHost);
 			string smtpBodyFooterHtml = string.Format("<p>Notice from Scheduled Job at {0}</p>", DateTime.Now.ToString("dd-MMM-yy, hh:mm tt"));
 			string smtpBodyContentHtml = string.Format("<p>{0} Updated Work Orders sent to FMS server {1}</p>", workCount, smtpServerHtmlLink);
 			return smtpBodyContentHtml+smtpBodyFooterHtml;
