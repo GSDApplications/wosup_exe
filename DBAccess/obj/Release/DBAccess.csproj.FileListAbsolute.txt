@@ -6,3 +6,4 @@ D:\export\htdocs\FMSWosup\DBAccess\obj\Release\DBAccess.csproj.CoreCompileInputs
 D:\export\htdocs\FMSWosup\DBAccess\obj\Release\DBAccess.csproj.CopyComplete
 D:\export\htdocs\FMSWosup\DBAccess\obj\Release\DBAccess.exe
 D:\export\htdocs\FMSWosup\DBAccess\obj\Release\DBAccess.pdb
+D:\export\htdocs\FMSWosup\DBAccess\obj\Release\DBAccess.csprojAssemblyReference.cache

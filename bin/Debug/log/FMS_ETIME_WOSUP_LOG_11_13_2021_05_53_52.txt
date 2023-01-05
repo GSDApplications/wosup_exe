@@ -1,0 +1,101 @@
+---11/13/2021 5:53:52 PM start program 
+---11/13/2021 5:53:52 PM This execution is for testing, sending data to test server 
+---11/13/2021 5:53:52 PM [update] Establishing SFTP Connection 
+---11/13/2021 5:53:52 PM [update] Generating Etime files 
+---11/13/2021 5:53:52 PM [update] fetching dataset from oracle database 
+---11/13/2021 5:53:53 PM [update] formating dataset and saving to local as D:\\export\\ftpdocs\\FMS_GSD_WOUPD_ETIME_20211113.txt 
+---11/13/2021 5:53:53 PM Removing FMS_GSD_WOUPD_ETIME_20211113.txt in server because of duplication of same name 
+---11/13/2021 5:53:53 PM Uploading D:\\export\\ftpdocs\\FMS_GSD_WOUPD_ETIME_20211113.txt to SFTP host as inbound/FMS_GSD_WOUPD_ETIME_20211113.txt 
+---11/13/2021 5:53:53 PM [update] Disconnecting SFTP connection 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= V0052222 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= H217010E 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= H2170000 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= H218010E 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= MOR11287 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= MOR11316 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= MOR11218 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= F9410108 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= F3090036 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= H219010E 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= H220010E 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= H221010E 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= V0021329 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= V0026247 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= V0039338 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= V0099780 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= V0092552 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= V0098016 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= V0098376 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= V0026253 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= V0039322 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= V0050266 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= V0029195 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= V0026339 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= V0007615 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= V0043617 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= V0007617 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= V0093079 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= V0029184 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= V3351R50 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= H0390101 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= H0950100 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= H0950000 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= F4640901 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= H0110104 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= H2120100 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= H2120000 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= H2170100 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= F3090037 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= F3090038 
+---11/13/2021 5:53:53 PM [update] Updating dataset for fmsid= F3090039 
+---11/13/2021 5:53:53 PM [update] Generating SMTP connecting and email details 
+---11/13/2021 5:53:53 PM [update] Sending SMTP emails 
+---11/13/2021 5:53:54 PM [wosup] Establishing SFTP Connection 
+---11/13/2021 5:53:54 PM [wosup] Generating Etime files 
+---11/13/2021 5:53:54 PM [wosup] fetching dataset from oracle database 
+---11/13/2021 5:53:54 PM [wosup] formating dataset and saving to local as D:\\export\\ftpdocs\\FMS_GSD_WOSUP_ETIME_20211113.txt 
+---11/13/2021 5:53:54 PM Removing FMS_GSD_WOSUP_ETIME_20211113.txt in server because of duplication of same name 
+---11/13/2021 5:53:54 PM Uploading D:\\export\\ftpdocs\\FMS_GSD_WOSUP_ETIME_20211113.txt to SFTP host as inbound/FMS_GSD_WOSUP_ETIME_20211113.txt 
+---11/13/2021 5:53:54 PM [wosup] Disconnecting SFTP connection 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= 7969000E 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= 86270200 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= 86320200 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= 8832010E 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= 8873010E 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= 86270007 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= 8970010E 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= 9204010E 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= 9206010E 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= 9207010E 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= 9210010E 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= 9212010E 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= 9213010E 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= 9217010E 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= 9218010E 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= 9223010E 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= 9224010E 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= 8874010E 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= 7969010P 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= 8928010E 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= 9225010E 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= 9025010E 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= 9025010P 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= 9026010E 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= 9205010E 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= 9208010E 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= 9209010E 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= 9211010E 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= 9214010E 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= 9215010E 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= 9216010E 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= 9219010E 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= 9220010E 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= 9221010E 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= 9222010E 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= MOR11327 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= MOR11229 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= MOR11284 
+---11/13/2021 5:53:54 PM [wosup] Updating dataset for fmsid= MOR11303 
+---11/13/2021 5:53:54 PM [wosup] Generating SMTP connecting and email details 
+---11/13/2021 5:53:54 PM [wosup] Sending SMTP emails 
+---11/13/2021 5:53:55 PM done 

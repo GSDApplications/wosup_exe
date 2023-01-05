@@ -1,0 +1,22 @@
+---8/18/2022 6:07:35 PM start program 
+---8/18/2022 6:07:35 PM [update] Establishing SFTP Connection 
+---8/18/2022 6:07:35 PM [update] Generating Etime files 
+---8/18/2022 6:07:35 PM [update] fetching dataset from oracle database 
+---8/18/2022 6:07:36 PM [update] fetched dataset is empty, skip... 
+---8/18/2022 6:07:36 PM [update] Disconnecting SFTP connection 
+---8/18/2022 6:07:36 PM [update] Generating SMTP connecting and email details 
+---8/18/2022 6:07:36 PM [update] Sending SMTP emails 
+---8/18/2022 6:07:37 PM [wosup] Establishing SFTP Connection 
+---8/18/2022 6:07:37 PM [wosup] Generating Etime files 
+---8/18/2022 6:07:37 PM [wosup] fetching dataset from oracle database 
+---8/18/2022 6:07:37 PM [wosup] formating dataset and saving to local as D:\\export\\ftpdocs\\FMS_GSD_WOSUP_ETIME_20220818.txt 
+---8/18/2022 6:07:37 PM Uploading D:\\export\\ftpdocs\\FMS_GSD_WOSUP_ETIME_20220818.txt to SFTP host as inbound/FMS_GSD_WOSUP_ETIME_20220818.txt 
+---8/18/2022 6:07:37 PM [wosup] Disconnecting SFTP connection 
+---8/18/2022 6:07:37 PM [wosup] Updating dataset for fmsid= H5070200 
+---8/18/2022 6:07:37 PM [wosup] Updating dataset for fmsid= H5070300 
+---8/18/2022 6:07:37 PM [wosup] Updating dataset for fmsid= H5070800 
+---8/18/2022 6:07:37 PM [wosup] Updating dataset for fmsid= H5070900 
+---8/18/2022 6:07:37 PM [wosup] Updating dataset for fmsid= H5071000 
+---8/18/2022 6:07:37 PM [wosup] Generating SMTP connecting and email details 
+---8/18/2022 6:07:37 PM [wosup] Sending SMTP emails 
+---8/18/2022 6:07:37 PM done 

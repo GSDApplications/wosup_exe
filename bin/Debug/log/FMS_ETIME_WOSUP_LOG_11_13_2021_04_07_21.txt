@@ -1,0 +1,10 @@
+---11/13/2021 4:07:21 PM start program 
+---11/13/2021 4:07:21 PM This execution is for testing, sending data to test server 
+---11/13/2021 4:07:21 PM [update] Establishing SFTP Connection 
+---11/13/2021 4:07:22 PM [update] Generating Etime files 
+---11/13/2021 4:07:22 PM [update] fetching dataset from oracle database 
+---11/13/2021 4:07:22 PM Cannot complete works: error throwed: 
+---11/13/2021 4:07:22 PM ORA-06550: line 1, column 12:
+PLS-00905: object SSYU.FMS_WOSUP is invalid
+ORA-06550: line 1, column 7:
+PL/SQL: Statement ignored 

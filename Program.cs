@@ -43,16 +43,12 @@ namespace FMSWosup
 				}
 				
 				sendSFTP(workType.update);
+				Util.updateDataByType(workType.update, id=>Logger.addLog(string.Format("[{0}]", workType.update.ToString()), "Updating dataset for fmsid=", id));
 				sendSMTP(workType.update);
 
 				sendSFTP(workType.wosup);
+				Util.updateDataByType(workType.wosup, id => Logger.addLog(string.Format("[{0}]", workType.wosup.ToString()), "Updating dataset for fmsid=", id));
 				sendSMTP(workType.wosup);
-
-
-				Logger.addLog(string.Format("[{0}]", workType.update.ToString()), "Finished Generating Data, Updating Database");
-				Util.updateDataByType(workType.update);
-				Logger.addLog(string.Format("[{0}]", workType.wosup.ToString()), "Finished Generating Data, Updating Database");
-				Util.updateDataByType(workType.wosup);
 
 				Logger.addLog("done");
 				Logger.commit();
@@ -139,7 +135,7 @@ namespace FMSWosup
 
 			Logger.addLog(string.Format("[{0}]", type.ToString()), "fetching dataset from oracle database");
 			DataSet ds = Util.getEtimeDataSetByType(type);
-			int count = Util.getRowCountFromDataset(ds);
+			int count = Util.getRowCountFromDataset(ds, type);
 			setWorkOrderCountByType(type, count);
 			if (count < 1)
 			{
@@ -150,7 +146,7 @@ namespace FMSWosup
 				using (StreamWriter sw = new StreamWriter(Config.GetLocalFilePathByType(type)))
 				{
 					Logger.addLog(string.Format("[{0}]", type.ToString()), "formating dataset and saving to local as", Config.GetLocalFilePathByType(type));
-					Util.generateTextByDataset(ds, sw, Config.GetGeneratedPrefixLineByType(type));
+					Util.generateTextByDataset(ds, sw, type);
 					sw.WriteLine(Config.GetOutputFooterByType(type, count));
 				}
 			}

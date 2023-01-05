@@ -1,0 +1,17 @@
+---11/16/2021 6:40:43 PM start program 
+---11/16/2021 6:40:43 PM This execution is for testing, sending data to test server 
+---11/16/2021 6:40:43 PM [update] Establishing SFTP Connection 
+---11/16/2021 6:40:44 PM [update] Generating Etime files 
+---11/16/2021 6:40:44 PM [update] fetching dataset from oracle database 
+---11/16/2021 6:40:44 PM [update] fetched dataset is empty, skip... 
+---11/16/2021 6:40:44 PM [update] Disconnecting SFTP connection 
+---11/16/2021 6:40:44 PM [update] Generating SMTP connecting and email details 
+---11/16/2021 6:40:44 PM [update] Sending SMTP emails 
+---11/16/2021 6:40:45 PM [wosup] Establishing SFTP Connection 
+---11/16/2021 6:40:46 PM [wosup] Generating Etime files 
+---11/16/2021 6:40:46 PM [wosup] fetching dataset from oracle database 
+---11/16/2021 6:40:46 PM [wosup] fetched dataset is empty, skip... 
+---11/16/2021 6:40:46 PM [wosup] Disconnecting SFTP connection 
+---11/16/2021 6:40:46 PM [wosup] Generating SMTP connecting and email details 
+---11/16/2021 6:40:46 PM [wosup] Sending SMTP emails 
+---11/16/2021 6:40:46 PM done 

@@ -1,0 +1,7 @@
+---8/18/2022 6:04:16 PM start program 
+---8/18/2022 6:04:16 PM This execution is for testing, sending data to test server 
+---8/18/2022 6:04:16 PM [update] Establishing SFTP Connection 
+---8/18/2022 6:04:16 PM [update] Generating Etime files 
+---8/18/2022 6:04:16 PM [update] fetching dataset from oracle database 
+---8/18/2022 6:04:17 PM Cannot complete works: error throwed: 
+---8/18/2022 6:04:17 PM ORA-28000: the account is locked 

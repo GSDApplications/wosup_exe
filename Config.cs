@@ -46,7 +46,7 @@ namespace FMSWosup
 
 		// output config
 		public static string etimePrefixLine = "HDRWOSUP   40                              1OE 1";
-		public static List<OutputItem> etimeOutputList = new List<OutputItem>
+		public static List<OutputItem> etimeUpdateOutputList = new List<OutputItem>
 		{
 			new OutputItem("WOR", 3),
 			new OutputItem("WOUPD", 8),
@@ -75,6 +75,75 @@ namespace FMSWosup
 			new OutputItem("RPT_6", 30),
 		};
 
+		public static List<OutputItem> etimeWosupOutputList = new List<OutputItem>
+		{
+			new OutputItem("WORWOSUP", 11),
+			new OutputItem("FMIS_DEPT_NBR", 4),
+			new OutputItem("EMPTY", 8),
+			new OutputItem("EMPTY", 20),
+			new OutputItem("DOC_VERS_TSKORD_LN_NO", 1),
+			new OutputItem("DOC_VERS_TSKORD_LN_NO", 1),
+			new OutputItem("FMIS_DEPT_NBR", 4),
+			new OutputItem("FMIS_WO_ID", 8),
+			new OutputItem("WO_NM", 60),
+			new OutputItem("WO_SH_NM", 15),
+			new OutputItem("EMPTY", 1),
+			new OutputItem("CNTAC_CD", 18),
+			new OutputItem("WO_OPEN_DT", 8),
+			new OutputItem("WO_CLOSE_DT", 8),
+			new OutputItem("PLAN_FRM_DT", 8),
+			new OutputItem("PLAN_TO_DT", 8),
+			new OutputItem("CAP_RATE_IND", 1),
+			new OutputItem("WO_DI_IND", 1),
+			new OutputItem("EMPTY", 1),
+			new OutputItem("ALW_BUD_FL", 1),
+			new OutputItem("FMIS_WO_DESC", 100),
+			new OutputItem("FMS_PROJECT_ID", 10),
+			new OutputItem("WO_MAJ_PROJ_CD", 6),
+			new OutputItem("PHASE_CD", 6),
+			new OutputItem("ACTV_CD", 4),
+			new OutputItem("LOC_CD", 4),
+			new OutputItem("FUNC_CD", 10),
+			new OutputItem("WO_ORI_DEPT_NBR", 4),
+			new OutputItem("WO_ORI_PROJ_ID" ,10),
+			new OutputItem("RPT_1", 30),
+			new OutputItem("RPT_2", 30),
+			new OutputItem("RPT_3", 30),
+			new OutputItem("RPT_4", 30),
+			new OutputItem("RPT_5", 30),
+			new OutputItem("RPT_6", 30),
+		};
+
+		public static List<OutputItem> etimeHDRWosupOutputList = new List<OutputItem>
+		{
+			new OutputItem("HDRWOSUP", 11),
+			new OutputItem("FMIS_DEPT_NBR", 4),
+			new OutputItem("EMPTY", 8),
+			new OutputItem("EMPTY", 20),
+			new OutputItem("DOC_VERS_TSKORD_LN_NO", 1),
+			new OutputItem("OE", 3),
+			new OutputItem("DOC_VERS_TSKORD_LN_NO", 1),
+			new OutputItem("EMPTY", 60),
+			new OutputItem("EMPTY", 8),
+			new OutputItem("EMPTY", 4),
+			new OutputItem("EMPTY", 3),
+			new OutputItem("EMPTY", 60),
+			new OutputItem("EMPTY", 250),
+		};
+
+		public static List<OutputItem> getOutputListByType(workType type)
+		{
+			switch (type)
+			{
+				case workType.update:
+					return etimeUpdateOutputList;
+				case workType.wosup:
+					return etimeWosupOutputList;
+				default:
+					return etimeUpdateOutputList;
+			}
+		}
+
 		private static string localFilePath = ConfigurationManager.AppSettings["localFilePath"].ToString();
 
 		private static string woupdTitle = ConfigurationManager.AppSettings["woupdFileName"].ToString();
@@ -94,7 +163,7 @@ namespace FMSWosup
 		public static int outputFooterByteLength = 32;
 		public static string getOutputFooter(string fileName, int workOrderCount, int headerCount=0)
 		{
-			return string.Format("TRL{0}{1}{2}", Util.generateTextLineByByteLength(fileName, 32), Util.generateTextLineByByteLength(workOrderCount.ToString(), 10), headerCount == 0 ? "" : Util.generateTextLineByByteLength(headerCount.ToString(), 10));
+			return string.Format("TRL{0}{1}{2}{3}", Util.generateTextLineByByteLength(fileName, 32), Util.generateTextLineByByteLength(workOrderCount.ToString(), 10, false), headerCount == 0 ? "" : Util.generateTextLineByByteLength(headerCount.ToString(), 10, false), Util.generateTextLineByByteLength("", 36));
 		}
 
 

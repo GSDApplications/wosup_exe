@@ -15,20 +15,31 @@ namespace FMSWosup
 {
 	class Util
 	{
-		public static void updateDataByType(workType type)
+		private static List<string> woupdWOIDList { get; set; } = new List<string>();
+		private static List<string> wosupWOIDList { get; set; } = new List<string>();
+
+		public static void updateDataByType(workType type, Action<string> log)
 		{
 			switch (type)
 			{
 				case workType.update:
-					updateDataByProcedure("UPDATE_ETIME_WOUPD_UPLOAD");
+					foreach(string id in woupdWOIDList)
+					{
+						log(id);
+						updateDataByProcedure("UPDATE_ETIME_WOUPD_UPLOAD", id);
+					}
 					break;
 				case workType.wosup:
-					updateDataByProcedure("UPDATE_ETIME_WOSUP_UPLOAD");
+					foreach(string id in wosupWOIDList)
+					{
+						log(id);
+						updateDataByProcedure("UPDATE_ETIME_WOSUP_UPLOAD", id);
+					}
 					break;
 			}
 		}
 
-		private static void updateDataByProcedure(string procedure)
+		private static void updateDataByProcedure(string procedure, string id)
 		{
 			DAccess db = new DAccess();
 			OracleConnection conn = Config.isTesting ? db.tmpGetTestOracleConnection(): db.tmpGetOracleConnection();
@@ -37,6 +48,7 @@ namespace FMSWosup
 			cmd.Connection.Open();
 			cmd.CommandType = CommandType.StoredProcedure;
 			cmd.CommandText = string.Format("{1}.FMS_WOSUP.{0}", procedure, Config.dbUser);
+			cmd.Parameters.Add(new OracleParameter("v_wo_id", OracleDbType.Varchar2, id, ParameterDirection.Input));
 			cmd.ExecuteNonQuery();
 			if (cmd.Connection.State != ConnectionState.Closed)
 				cmd.Connection.Close();
@@ -76,41 +88,59 @@ namespace FMSWosup
 			}
 		}
 
-		public static string generateTextLineByByteLength(string text, int byteLength)
+		public static string generateTextLineByByteLength(string text, int byteLength, bool fromLeft=true)
 		{
 			List<string> chars = new List<string>();
 			for(int i = 0; i < text.Length; i++)
 			{
 				chars.Add(text.Substring(i, 1));
 			}
-			for(int i = text.Length; i < byteLength; i++)
+			if (fromLeft)
 			{
-				chars.Add(" ");
+				for (int i = text.Length; i < byteLength; i++)
+				{
+					chars.Add(" ");
+				}
+				return string.Join("", chars);
 			}
-			return string.Join("", chars);
+			else
+			{
+				List<string> empty = new List<string>();
+				for (int i = text.Length; i < byteLength; i++)
+				{
+					empty.Add(" ");
+				}
+				return string.Join("", empty)+ string.Join("", chars);
+			}
+			
 		}
 
-		public static void generateTextByDataset(DataSet ds, StreamWriter sw, string rowPrefix="")
+		public static void generateTextByDataset(DataSet ds, StreamWriter sw, workType type)
 		{
 			foreach(DataTable dt in ds.Tables)
 			{
 				foreach(DataRow dr in dt.Rows)
 				{
 					string line = "";
-					foreach(Config.OutputItem item in Config.etimeOutputList)
+					foreach(Config.OutputItem item in Config.getOutputListByType(type))
 					{
-						line += generateTextLineByByteLength(dr[item.value].ToString(), item.byteLength);
+						line += generateTextLineByByteLength(dr[item.value].ToString().Trim(), item.byteLength);
 					}
-					if (!string.IsNullOrEmpty(rowPrefix))
+					if (type==workType.wosup)
 					{
-						sw.WriteLine(rowPrefix);
+						string prefix = "";
+						foreach (Config.OutputItem item in Config.etimeHDRWosupOutputList)
+						{
+							prefix += generateTextLineByByteLength(dr[item.value].ToString().Trim(), item.byteLength);
+						}
+						sw.WriteLine(prefix);
 					}
 					sw.WriteLine(line);
 				}
 			}
 		}
 
-		public static int getRowCountFromDataset(DataSet ds)
+		public static int getRowCountFromDataset(DataSet ds, workType type)
 		{
 			int count = 0;
 			foreach(DataTable dt in ds.Tables)
@@ -118,6 +148,15 @@ namespace FMSWosup
 				foreach(DataRow dr in dt.Rows)
 				{
 					count += 1;
+					switch (type)
+					{
+						case workType.update:
+							woupdWOIDList.Add(dr["FMIS_WO_ID"].ToString());
+							break;
+						case workType.wosup:
+							wosupWOIDList.Add(dr["FMIS_WO_ID"].ToString());
+							break;
+					}
 				}
 			}
 			return count;
